@@ -22,16 +22,21 @@ function hupd(h)
 	h.r1=max((-20/1200)*h.lt+20,0)
 end
 
-function pnh()
+function phd()
+	local md,mh=-1,nil
 	for h in all(ht) do
-		local dx,dy
+		local d,dx,dy
 		dx=px-h.x
 		dy=py-h.y
-		if sqrt(dx^2+dy^2)<h.r2 then
-			return t
+		d=sqrt(dx^2+dy^2)		
+		if (md<0) md=d
+		if (mh==nil) mh=h
+		if d<md then
+			md=d
+			mh=h
 		end
 	end
-	return f
+	return md,mh
 end
 
 function hrdr(h)
@@ -87,16 +92,19 @@ function _update()
  	end
  	if (wth and wtv) pwt=0
  	
- 	if btn(4) and hst<=0 then
- 		if pw>=3 then
- 			pw-=3
- 			add(ht,{
- 				x=px,y=py,lt=0,r1=20,r2=80
- 			})
- 			hst=30
- 		end
- 	end
- 	hst=max(hst-1,0)
+ 	local hcs,nh,nhd
+ 	nhd,nh=phd()
+  hcs=nh==nil or nhd>nh.r2
+  if hst<=0 and hcs then
+  	if btn(4) and pw>=3 then
+  		pw-=3
+  		add(ht,{
+  			x=px,y=py,lt=0,r1=20,r2=80
+  		})
+  		hst=30
+  	end
+  end
+  hst=max(hst-1,0)
  end
  
  local tn,te,ts,tw
@@ -133,7 +141,7 @@ function _draw()
 	local ps=pwt%20<10 and 1 or 2
 	spr(ps,px-cx-3,py-cy-7,1,1,pr)
 	
-	if pc then
+	if pc>=0 then
  	local hp="♥"..php
  	rectfill(0,128-pc,127,128,0)
  	print(hp,108,129-pc,14)
