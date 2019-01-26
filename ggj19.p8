@@ -5,6 +5,7 @@ __lua__
 
 local t,f=true,false
 
+local at
 local px,py,pc,pr,pwt,php,pw
 local cx,cy
 local ht,hst={},0
@@ -57,6 +58,7 @@ function hrdr(h)
 end
 
 function _init()
+	at=0
 	cx,cy=0,0
 	px,py=72,72
 	pc=0
@@ -121,7 +123,18 @@ function _update()
  if (f0(te)) px=min(px,ptx+4)
  if (f0(ts)) py=min(py,pty+6)
  
+ local nhd,nh=phd()
+ local tdmg
+ tdmg=nh==nil or nhd<0
+ tdmg=tdmg or nhd>nh.r2
+ if tdmg then
+ 	php=max(php-1,0)
+ elseif nhd<nh.r1 then
+ 	php=min(php+1,100)
+ end
+ 
  if (0<=pc and pc<7) pc+=1
+ at+=1
  
  cx,cy=px-64,py-64
 end
@@ -142,9 +155,10 @@ function _draw()
 	spr(ps,px-cx-3,py-cy-7,1,1,pr)
 	
 	if pc>=0 then
- 	local hp="♥"..php
+ 	local hp,hpc="♥"..php,14
+ 	local nhd,nh=phd()
  	rectfill(0,128-pc,127,128,0)
- 	print(hp,108,129-pc,14)
+ 	print(hp,108,129-pc,hpc)
  	spr(16,-1,126-pc)
  	print(pw,8,129-pc,4)
  end
