@@ -124,13 +124,16 @@ function _update()
  if (f0(ts)) py=min(py,pty+6)
  
  local nhd,nh=phd()
- local tdmg
+ local tdmg,heal
  tdmg=nh==nil or nhd<0
  tdmg=tdmg or nhd>nh.r2
- if tdmg then
- 	php=max(php-1,0)
+ if tdmg and at%5==0 then
+  php=max(php-1,0)
+ elseif tdmg then
  elseif nhd<nh.r1 then
- 	php=min(php+1,100)
+ 	if at%3==0 then
+  	php=min(php+1,100)
+  end
  end
  
  if (0<=pc and pc<7) pc+=1
