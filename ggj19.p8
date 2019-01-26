@@ -46,6 +46,8 @@ function hrdr(h)
 	fillp(0xa5a5+0b.1)
 	circ(hx,hy,h.r1,9)
 	circ(hx,hy,h.r2,10)
+	circ(hx,hy,h.r2+1,10)
+	circ(hx,hy,h.r2+3,10)
 	fillp()
 end
 
