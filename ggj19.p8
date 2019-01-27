@@ -299,11 +299,27 @@ function _draw()
 	if pc>=0 then
  	local hp,hpc="♥"..php,14
  	local nhd,nh=phd()
+ 	local tdmg,heal
+  tdmg=nh==nil or nhd<0
+  tdmg=tdmg or nhd>nh.r2
+  tdmg=tdmg and pc>=0
+  if tdmg and at%9<3 then
+   hpc=8
+  elseif tdmg then
+  elseif nh and nhd<nh.r1 then
+  	if pc>=0 then
+   	hpc=9
+   end
+  end
+  if (php<=0) hpc=8
+  if (php>=100) hpc=14
  	rectfill(0,128-pc,127,128,0)
  	print(hp,108,129-pc,hpc)
  	spr(16,-1,126-pc)
  	print(pw,8,129-pc,4)
  end
+ 
+ local nhd,nh=phd()
  
  if scn==0 then
  	if at>=30 and at%30<20 then
@@ -326,8 +342,8 @@ function _draw()
  if hst<=0 and hcs then
  	if not f2(mget(ptx,pty)) then
   	if pw>=3 then
-  		msg="🅾️ build fire"
-  		print(msg,38,92,2)
+  		msg="🅾️ make fire"
+  		print(msg,40,92,2)
  		end
  	end
  end
