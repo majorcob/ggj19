@@ -143,7 +143,7 @@ function _update()
  	
  	local hcs,nh,nhd
  	nhd,nh=phd()
-  hcs=nhd>nh.r2 or nhd<0
+  hcs=nhd<0 or nhd>nh.r2
   if hst<=0 and hcs then
   	if not f2(mget(ptx,pty)) then
    	if btn(4) and pw>=3 then
@@ -248,8 +248,7 @@ function _update()
  end
  local nhd,nh=phd()
  local tdmg,heal
- tdmg=nh==nil or nhd<0
- tdmg=tdmg or nhd>nh.r2
+ tdmg=nhd<0 or nhd>nh.r2
  tdmg=tdmg and pc>=0
  if scn==1 then
   if tdmg and at%3==0 then
