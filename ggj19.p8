@@ -421,7 +421,7 @@ function _draw()
  local msg
  local hcs,nh,nhd
  nhd,nh=phd()
- hcs=nhd>nh.r2 or nhd<0
+ hcs=nhd<0 or nhd>nh.r2
  if hst<=0 and hcs then
  	if not f2(mget(ptx,pty)) then
   	if pw>=3 and not fhb then
