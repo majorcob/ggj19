@@ -8,7 +8,7 @@ Use arrows to move, Z (“O” button in PICO-8) to build and X to chop.
 
 ## Installation
 
-Download the binaries (ggj19.zip) from the [releases page](https://github.com/majorcob/ggj19/releases).
+Download the binaries (ggj19.zip, NOT the source code) from the [releases page](https://github.com/majorcob/ggj19/releases).
 Make sure to fully extract the archive before running the executable!
 
 ## License
