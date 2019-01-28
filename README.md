@@ -4,7 +4,7 @@ Global Game Jam 2019 project, made with [PICO-8](https://www.lexaloffle.com/pico
 The theme is **“what home means to you”**.
 
 Brave the harsh cold by building campfires and find your way “home”.
-Use WASD to move, O to build and P key ("X" button in PICO-8) to chop.
+Use arrows to move, Z (“O” button in PICO-8) to build and X to chop.
 
 ## Installation
 
